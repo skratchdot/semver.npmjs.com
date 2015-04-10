@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <title>npm semantic version calculator</title>
+    <link rel="shortcut icon" href="https://www.npmjs.com/static/misc/favicon.ico">
+    <link rel="stylesheet" href="angular-csp.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes">
+  </head>
+  <body ng-app="SemverApp">
+    <h1>npm semver calculator</h1>
+    <p>New to semantic versioning? <a href="https://docs.npmjs.com/getting-started/semantic-versioning">Learn the basics</a>.</p>
+    <div ng-controller="VersionCtrl">
+      <form id="package">
+        <label for="package-name">pick a package</label>
+        <input id="package-name" ng-model="package"></input>
+        <input type="submit" value="fetch" ng-click="getVersions()"></input>
+      </form>
+      <div>
+        <label for="range">enter a range</label>
+        <input id="range" ng-model="range" ng-change="checkVersions()"></input>
+      </div>
+      <img ng-class="{true: 'loading', false: 'loaded'}[loading]" src="spinner.gif" />
+      <ul id="versions">
+        <li ng-repeat="version in versions" ng-class="{true: 'satisfies', false: ''}[version.satisfies]">
+          <code ng-cloak>
+            {{version.version}}
+          </code>
+        </li>
+      </ul>
+    </div>
+    <div id="how">
+      <h2>how do i...</h2>
+      <div>
+        <h3>include everything greater than a particular version in the same major range</h3>
+        <div>use the carat (aka hat) symbol, <code>^</code>
+          <div class="example">
+            <h4>examples:</h4>
+            <ul>
+              <li>
+                <code>^2.2.1</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>include everything greater than a particular version in the same minor range</h3>
+        <div>use the tilde symbol, <code>~</code>
+          <div class="example">
+            <h4>examples:</h4>
+            <ul>
+              <li>
+                <code>~2.2.0</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>specify a range of stable versions</h3>
+        <div>use <code>></code>, <code><</code>, <code>=</code>, <code>>=</code> or <code><=</code> for comparisons, or <code>-</code> to specify an inclusive range
+          <div class="example">
+            <h4>examples:</h4>
+            <ul>
+              <li>
+                <code>>2.1</code>
+              </li>
+              <li>
+                <code>1.0.0 - 1.2.0</code>
+              </li>
+            </ul>
+          </div>
+          <div class="note">there must be spaces on either side of hyphens</div>
+        </div>
+      </div>
+      <div>
+        <h3>include prerelease versions like <code>alpha</code> and <code>beta</code></h3>
+        <div>use the prerelease tag
+          <div class="example">
+            <h4>examples:</h4>
+            <ul>
+              <li>
+                <code>1.0.0-rc.1</code>
+              </li>
+            </ul>
+          </div>
+          <div class="note">prerelease versions are specified as <a href="https://github.com/npm/node-semver#prerelease-tags">exact versions</a>. To specify a range, see below.</div>
+        </div>
+      </div>
+      <div>
+        <h3>specify a range of prerelease versions</h3>
+        <div>use comparisons like <code>></code> with a prerelease tag
+          <div class="example">
+            <h4>examples:</h4>
+            <ul>
+              <li>
+                <code>>1.0.0-alpha</code>
+              </li>
+              <li>
+                <code>>=1.0.0-rc.0 <1.0.1</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>include multiple sets of versions</h3>
+        <div>use <code>||</code> to combine
+          <div class="example">
+            <h4>examples:</h4>
+            <ul>
+              <li>
+                <code>^2 <2.2 || > 2.3</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="bundle.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47041310-4', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
