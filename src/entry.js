@@ -1,6 +1,10 @@
+'use strict';
+
 var angular = require('angular');
 var app = angular.module('SemverApp', []);
 var semver = require('semver');
+
+const REGISTRY_CORS_PROXY = 'https://npm-registry-cors-proxy.herokuapp.com';
 
 app.controller('VersionCtrl', function($scope, $http) {
   var versions;
@@ -8,7 +12,7 @@ app.controller('VersionCtrl', function($scope, $http) {
 
   $scope.getVersions = function() {
     $scope.loading = true;
-    $http.get('http://npm-registry-cors-proxy.herokuapp.com/' + $scope.package)
+    $http.get(REGISTRY_CORS_PROXY + '/' + $scope.package)
       .success(function(data, status, headers, config) {
         versions = Object.keys(data.versions);
 

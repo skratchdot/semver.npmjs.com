@@ -8,18 +8,28 @@
   "scripts": {
     "build-js": "browserify src/entry.js -d -o build/bundle.js",
     "build-css": "stylus --compress < src/styles.styl > build/styles.css && cp node_modules/angular/angular-csp.css build/",
-    "build": "mkdir -p build && npm run build-js && npm run build-css && cp src/static/* build/",
+    "build-ping": "echo 'ok' > build/_monitor/ping",
+    "build": "mkdir -p build/_monitor && npm run build-js && npm run build-css && cp src/static/* build/ && npm run build-ping",
     "livereload": "live-reload --port 9091 ./build/*",
-    "watch": "watch 'npm run build' src/"
+    "watch": "watch 'npm run build' src/",
+    "start": "http-server build",
+    "postinstall": "npm run build"
   },
   "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "angular": "global:angular"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/semver.npmjs.com"
+  },
   "dependencies": {
     "angular": "^1.3.15",
+    "http-server": "~0.9.0",
     "semver": "^4.3.1"
   },
   "devDependencies": {
