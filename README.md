@@ -6,14 +6,13 @@ A website that teaches you how semantic versioning works
 
 ```sh
 npm install
-npm run watch
+npm start
 ```
-
-Then open `build/index.html` in your browser.
 
 ## Dependencies
 
 - [angular](https://github.com/angular/angular.js): HTML enhanced for web apps
+- [http-server](https://github.com/indexzero/http-server): a simple zero-configuration command-line http server
 - [semver](https://github.com/npm/node-semver): The semantic version parser used by npm.
 
 ## Dev Dependencies
@@ -23,6 +22,15 @@ Then open `build/index.html` in your browser.
 - [stylus](https://github.com/LearnBoost/stylus): Robust, expressive, and feature-rich CSS superset
 - [watch](https://github.com/mikeal/watch): Utilities for watching file trees.
 
+## Deployment
+
+#### Staging, https://semver.npm.red
+
+`git push origin deploy-staging`
+
+#### Production, https://semver.npmjs.com
+
+`git push origin deploy-production`
 
 ## License
 
