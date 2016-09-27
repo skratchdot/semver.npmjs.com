@@ -4,7 +4,7 @@ var angular = require('angular');
 var app = angular.module('SemverApp', []);
 var semver = require('semver');
 
-const REGISTRY_CORS_PROXY = 'https://npm-registry-cors-proxy.herokuapp.com';
+var REGISTRY_CORS_PROXY = 'https://cors-proxy-ee2bb0df.internal.npmjs.com';
 
 app.controller('VersionCtrl', function($scope, $http) {
   var versions;
